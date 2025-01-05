@@ -19,14 +19,20 @@ function App() {
     }, []);
 
   const handleSearch = ()=>{
+    let present = false;
     for(let i=0;i<dict.length;i++){
-      if(dict[i].word==search){
+      let currentWord = dict[i].word;
+      if(currentWord.toLowerCase()===search.toLowerCase()){
+        console.log(currentWord.toLowerCase(),dict[i].meaning)
          setDefiniton(dict[i].meaning);
-      }else{
-        setDefiniton("Word not found in the dictionary.");
+         present = true;
+         break;
       }
-      console.log(dict[i].word,search);
     }
+    if(!present){
+      setDefiniton("Word not found in the dictionary.");
+    }
+
   }
   return (
     <div className="App">
